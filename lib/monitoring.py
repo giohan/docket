@@ -34,7 +34,7 @@ def metrics(conf):
 
     t = texttable.Texttable()
     t.add_rows(metric_data)
-    if conf['auto_update']: unused_variable = os.system("clear")
+    if 'auto_update' in conf and conf['auto_update']: unused_variable = os.system("clear")
     print t.draw()
 
 
