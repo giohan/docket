@@ -67,7 +67,7 @@ def main():
 
     # Deafult function calls for each subcommand
     sp_build.set_defaults(func=docker.build)
-    sp_containers.set_defaults(func=containers.container_operations)
+    sp_containers.set_defaults(func=containers.do_operations)
     sp_monitor.set_defaults(func=monitor.do_monitor)
     sp_list.set_defaults(func=docker.list)
     sp_cleanup.set_defaults(func=docker.cleanup)

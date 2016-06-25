@@ -79,7 +79,18 @@ def create_containers(conf):
 
 
 def list(conf):
-    pass
+
+    ids = get_containers(conf)
+
+    container_data = []
+    container_data.append(["Name","Status","Ports","Image"])
+    for id in ids:
+        container_data.append(containers.get_info(conf['url'],id))
+
+    t = texttable.Texttable()
+    t.add_rows(container_data)
+    print t.draw()
+
 
 def cleanup(conf):
     pass
@@ -94,6 +105,9 @@ def get_containers(conf):
 
     url = conf['url']
     endpoint = '/containers/json'
+
+    if conf['all']:
+        endpoint = endpoint + '?all=1'
     rest_point = url + endpoint
 
     r = requests.get(rest_point)

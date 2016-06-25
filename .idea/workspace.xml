@@ -2,10 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="16aaaa35-fc1b-4534-928b-2be52d6a349f" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dockable" afterPath="$PROJECT_DIR$/dockable" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/containers.py" afterPath="$PROJECT_DIR$/lib/containers.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/docker.py" afterPath="$PROJECT_DIR$/lib/docker.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/monitoring.py" afterPath="$PROJECT_DIR$/lib/monitoring.py" />
     </list>
     <ignored path="dockable.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -30,20 +29,10 @@
         <entry file="file://$PROJECT_DIR$/dockable">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="5" column="4" selection-start-line="5" selection-start-column="4" selection-end-line="5" selection-end-column="4" />
+              <caret line="74" column="42" selection-start-line="74" selection-start-column="42" selection-end-line="74" selection-end-column="42" />
               <folding>
                 <element signature="e#0#15#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="container.spec" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/config/container.spec">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="1" column="30" selection-start-line="1" selection-start-column="30" selection-end-line="1" selection-end-column="30" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -52,7 +41,7 @@
         <entry file="file://$PROJECT_DIR$/lib/containers.py">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="13" column="30" selection-start-line="13" selection-start-column="30" selection-end-line="13" selection-end-column="30" />
+              <caret line="0" column="16" selection-start-line="0" selection-start-column="16" selection-end-line="0" selection-end-column="16" />
               <folding />
             </state>
           </provider>
@@ -61,8 +50,8 @@
       <file leaf-file-name="docker.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/lib/docker.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.5881007">
-              <caret line="86" column="21" selection-start-line="86" selection-start-column="21" selection-end-line="86" selection-end-column="21" />
+            <state vertical-scroll-proportion="0.45080093">
+              <caret line="87" column="64" selection-start-line="87" selection-start-column="64" selection-end-line="87" selection-end-column="64" />
               <folding>
                 <element signature="e#0#17#0" expanded="true" />
               </folding>
@@ -93,10 +82,10 @@
         <option value="$PROJECT_DIR$/config/container.spec" />
         <option value="$PROJECT_DIR$/application/Dockerfile" />
         <option value="$PROJECT_DIR$/README.md" />
+        <option value="$PROJECT_DIR$/lib/monitoring.py" />
         <option value="$PROJECT_DIR$/dockable" />
         <option value="$PROJECT_DIR$/lib/containers.py" />
         <option value="$PROJECT_DIR$/lib/docker.py" />
-        <option value="$PROJECT_DIR$/lib/monitoring.py" />
       </list>
     </option>
   </component>
@@ -432,6 +421,16 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/dockable">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="74" column="42" selection-start-line="74" selection-start-column="42" selection-end-line="74" selection-end-column="42" />
+          <folding>
+            <element signature="e#0#15#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/lib/monitoring.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -445,25 +444,15 @@
     <entry file="file://$PROJECT_DIR$/lib/containers.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="13" column="30" selection-start-line="13" selection-start-column="30" selection-end-line="13" selection-end-column="30" />
+          <caret line="0" column="16" selection-start-line="0" selection-start-column="16" selection-end-line="0" selection-end-column="16" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dockable">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="5" column="4" selection-start-line="5" selection-start-column="4" selection-end-line="5" selection-end-column="4" />
-          <folding>
-            <element signature="e#0#15#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/docker.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5881007">
-          <caret line="86" column="21" selection-start-line="86" selection-start-column="21" selection-end-line="86" selection-end-column="21" />
+        <state vertical-scroll-proportion="0.45080093">
+          <caret line="87" column="64" selection-start-line="87" selection-start-column="64" selection-end-line="87" selection-end-column="64" />
           <folding>
             <element signature="e#0#17#0" expanded="true" />
           </folding>

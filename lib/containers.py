@@ -1,19 +1,31 @@
 import importlib
-try:
-    importlib.import_module('requests')
-except ImportError:
-    import pip
-    pip.main(['install', 'requests'])
-finally:
-    globals()['requests'] = importlib.import_module('requests')
+packages=['requests','termcolor']
+for package in packages:
+    try:
+        importlib.import_module(package)
+    except ImportError:
+        import pip
+        pip.main(['install', package])
+    finally:
+        globals()[package] = importlib.import_module(package)
 
 def container_operations(url,action,id):
 
-    # request endpoint and url
-    endpoint = '/containers/{}/{}'.format(id,action)
-    rest_point = url + endpoint
+    if action == 'rm':
+        endpoint = '/containers/{}'.format(id)
+        rest_point = url + endpoint
 
-    r = requests.post(rest_point)
+        r = requests.delete(rest_point)
+
+        print termcolor.colored('Deleted container {}'.format(id), 'red')
+    else:
+        endpoint = '/containers/{}/{}'.format(id,action)
+        rest_point = url + endpoint
+
+        r = requests.post(rest_point)
+
+        status = 'started' if action=='start' else 'stopped'
+        print termcolor.colored('{} container {}'.format(status,id), 'cyan')
 
 def get_info(url,id):
 
@@ -25,3 +37,7 @@ def get_info(url,id):
     data = [r.json()['Name'].replace('/',''),r.json()['State']['Status'],list(r.json()['Config']['ExposedPorts'].keys()),r.json()['Config']['Image']]
 
     return data
+
+def do_operations(conf):
+
+    container_operations(conf['url'],conf['action'],conf['id'])
