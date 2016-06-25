@@ -2,7 +2,8 @@ import docker
 import containers
 import importlib
 import math
-packages=['requests','texttable']
+import os
+packages=['requests','texttable','time']
 for package in packages:
     try:
         importlib.import_module(package)
@@ -33,11 +34,15 @@ def metrics(conf):
 
     t = texttable.Texttable()
     t.add_rows(metric_data)
+    if conf['auto_update']: unused_variable = os.system("clear")
     print t.draw()
 
 
 def realtime(conf):
-    pass
+
+    while True:
+        metrics(conf)
+        time.sleep(1)
 
 
 
