@@ -25,7 +25,11 @@ def metrics(conf):
 
         mem = convertSize(int(stats['memory_stats']['usage'])) + ' / ' + convertSize(int(stats['memory_stats']['limit']))
         net = convertSize(int(stats['networks']['eth0']['rx_bytes'])) + ' / ' + convertSize(int(stats['networks']['eth0']['tx_bytes']))
-        metric_data.append([id,"0 %",mem,net])
+        cpu_delta = stats['cpu_stats']['cpu_usage']['total_usage'] - stats['precpu_stats']['cpu_usage']['total_usage']
+        system_delta = stats['cpu_stats']['system_cpu_usage'] - stats['precpu_stats']['system_cpu_usage']
+        cpu_utilization = str((cpu_delta / system_delta) * float(len(stats['cpu_stats']['cpu_usage']['percpu_usage'])))
+
+        metric_data.append([id,"{} %".format(cpu_utilization),mem,net])
 
     t = texttable.Texttable()
     t.add_rows(metric_data)
