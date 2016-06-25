@@ -9,6 +9,27 @@
 - Helps you monitor container health
 - Logs from all containers are placed in the */container-logs* directory of the host machine
 
+## Project Structure ##
+~~~~
+├── application  
+│   ├── Dockerfile  
+│   ├── package.json  
+│   └── server.js  
+├── config  
+│   └── container.spec  
+├── dockable  
+├── lib  
+│   ├── containers.py  
+│   ├── docker.py  
+│   ├── __init__.py  
+│   └── monitoring.py  
+└── README.md  
+~~~~
+
+- The *application/* directory is the default directory where the Dockerfile and all application files are placed.
+- *container.spec* is used by default to create containers.
+
+
 ## Get Started ##
 
 #### Prerequisites ####
@@ -102,6 +123,7 @@ dockable build --url http://<ip>:<port> -i test/image -n 3
 ~~~
 dockable monitor --url http://<ip>:<port>
 ~~~
+
 - Stop and remove a running container
 ~~~
 dockable containers stop --id <container id or name> --url http://<ip>:<port>
@@ -112,22 +134,52 @@ dockable containers rm --id <container id or name> --url http://<ip>:<port>
 dockable list --url http://<ip>:<port> --all
 ~~~
 
-## Project Structure ##
-~~~~
-├── application  
-│   ├── Dockerfile  
-│   ├── package.json  
-│   └── server.js  
-├── config  
-│   └── container.spec  
-├── dockable  
-├── lib  
-│   ├── containers.py  
-│   ├── docker.py  
-│   ├── __init__.py  
-│   └── monitoring.py  
-└── README.md  
-~~~~
-
-- Anything placed under the *application/* directory is used to build the image.
-- container.spec is used to create containers.
+#### Sample output: ####
+~~~
+$ dockable monitor --url http://139.162.195.16:4243 
++---------------------+-------+--------------------+-------------------+
+|        Name         | CPU % | Mem Usage / Limit  |     Net I / O     |
++=====================+=======+====================+===================+
+| kickass_lalande     | 0 %   | 73.18 MB / 12.6 GB | 648.0 B / 738.0 B |
++---------------------+-------+--------------------+-------------------+
+| pedantic_tesla      | 0 %   | 73.19 MB / 12.6 GB | 1.39 KB / 648.0 B |
++---------------------+-------+--------------------+-------------------+
+| furious_archimedes  | 0 %   | 73.18 MB / 12.6 GB | 4.51 KB / 738.0 B |
++---------------------+-------+--------------------+-------------------+
+| sharp_chandrasekhar | 0 %   | 73.18 MB / 12.6 GB | 5.86 KB / 738.0 B |
++---------------------+-------+--------------------+-------------------+
+| prickly_payne       | 0 %   | 73.18 MB / 12.6 GB | 6.37 KB / 738.0 B |
++---------------------+-------+--------------------+-------------------+
+~~~
+~~~
+$ dockable build --url http://139.162.195.16:4243 -i test/image
+Building image "test/image" from directory "application/"... 
+	(This might take a while)
+Image built successfully!
+Creating "1" containers from image "test/image"... 
+Created 1 containers!
+started container d273f373aab8dd470cd82fb8304b153fe31dbd2aa01eac141dc57adb443cd454
++-----------------+---------+--------------------------+------------+
+|      Name       | Status  |          Ports           |   Image    |
++=================+=========+==========================+============+
+| kickass_lalande | running | [u'8080/tcp', u'22/tcp'] | test/image |
++-----------------+---------+--------------------------+------------+
+~~~
+~~~
+$ dockable list --url http://139.162.195.16:4243 --all
++---------------------+---------+--------------------------+------------+
+|        Name         | Status  |          Ports           |   Image    |
++=====================+=========+==========================+============+
+| kickass_lalande     | running | [u'8080/tcp', u'22/tcp'] | test/image |
++---------------------+---------+--------------------------+------------+
+| pedantic_tesla      | running | [u'8080/tcp', u'22/tcp'] | test/image |
++---------------------+---------+--------------------------+------------+
+| sad_noyce           | exited  | [u'8080/tcp', u'22/tcp'] | test/image |
++---------------------+---------+--------------------------+------------+
+| furious_archimedes  | exited  | [u'8080/tcp', u'22/tcp'] | test/image |
++---------------------+---------+--------------------------+------------+
+| sharp_chandrasekhar | running | [u'8080/tcp', u'22/tcp'] | test/image |
++---------------------+---------+--------------------------+------------+
+| prickly_payne       | running | [u'8080/tcp', u'22/tcp'] | test/image |
++---------------------+---------+--------------------------+------------+
+~~~
