@@ -61,7 +61,8 @@ def create_containers(conf):
 
     ids =[]
     container_data = []
-    container_data.append(['ID','Name','Status','Ports','Image'])
+    container_data.append(["Name","Status","Ports","Image"])
+
 
     for i in range(1, int(conf['num_instances'])+1):
 
@@ -90,4 +91,15 @@ def get_images(conf):
     pass
 
 def get_containers(conf):
-    pass
+
+    url = conf['url']
+    endpoint = '/containers/json'
+    rest_point = url + endpoint
+
+    r = requests.get(rest_point)
+
+    ids = []
+    for cont in r.json():
+        ids.append(cont['Names'][0].replace('/',''))
+
+    return ids

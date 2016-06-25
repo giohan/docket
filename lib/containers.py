@@ -22,6 +22,6 @@ def get_info(url,id):
 
     r = requests.get(rest_point)
 
-    data = [r.json()['Id'],r.json()['Name'].replace('/',''),r.json()['State']['Status'],list(r.json()['Config']['ExposedPorts'].keys()),r.json()['Config']['Image']]
+    data = [r.json()['Name'].replace('/',''),r.json()['State']['Status'],list(r.json()['Config']['ExposedPorts'].keys()),r.json()['Config']['Image']]
 
     return data
