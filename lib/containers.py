@@ -34,7 +34,12 @@ def get_info(url,id):
 
     r = requests.get(rest_point)
 
-    data = [r.json()['Name'].replace('/',''),r.json()['State']['Status'],list(r.json()['Config']['ExposedPorts'].keys()),r.json()['Config']['Image']]
+    ports = r.json()['NetworkSettings']['Ports']
+    portlist = []
+    for k,v in ports.iteritems():
+        portlist.append('{}: {}'.format(k.split('/')[0],v[0]['HostPort']))
+
+    data = [r.json()['Name'].replace('/',''),r.json()['State']['Status'],r.json()['NetworkSettings']['IPAddress'],'\n'.join(portlist),r.json()['Config']['Image']]
 
     return data
 

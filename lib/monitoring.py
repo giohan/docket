@@ -41,13 +41,12 @@ def do_monitor(conf):
 
     if not conf['auto_update']:
         metrics(conf)
-    elif conf['auto_update']:
+    else:
         realtime(conf)
 
 
 def get_stats(url,id):
 
-    # request endpoint and url
     endpoint = '/containers/{}/stats?stream=false'.format(id)
     rest_point = url + endpoint
 

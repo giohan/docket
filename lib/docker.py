@@ -3,6 +3,7 @@ import pip
 import importlib
 import json
 import containers
+import monitoring
 packages=['requests','termcolor','time','texttable']
 for package in packages:
     try:
@@ -40,6 +41,8 @@ def build(conf):
 
     create_containers(conf)
 
+    print termcolor.colored('Fetching metrics... ', 'cyan')
+    monitoring.metrics(conf)
 
 
 def create_containers(conf):
@@ -61,7 +64,7 @@ def create_containers(conf):
 
     ids =[]
     container_data = []
-    container_data.append(["Name","Status","Ports","Image"])
+    container_data.append(["Name","Status","IP","Ports","Image"])
 
 
     for i in range(1, int(conf['num_instances'])+1):
@@ -83,7 +86,7 @@ def list(conf):
     ids = get_containers(conf)
 
     container_data = []
-    container_data.append(["Name","Status","Ports","Image"])
+    container_data.append(["Name","Status","IP","Ports","Image"])
     for id in ids:
         container_data.append(containers.get_info(conf['url'],id))
 
