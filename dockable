@@ -1,3 +1,5 @@
+#!/usr/bin/python
+
 import argparse
 import importlib
 import lib.docker as docker
@@ -57,11 +59,6 @@ def main():
                                description='Creates a table with basic metrics for each container')
     sp_monitor.add_argument('--auto-update',action='store_true',default=False,
                             help='Makes the metrics table auto-update in a "top"-like manner')
-
-    sp_cleanup = sp.add_parser('cleanup',help='Cleanup docker',
-                               parents=[url_parse],
-                               description='Removes images and containers from docker. To be used with caution beacause any changes \
-                               are non-reversable')
     # End of subparsers
 
 
@@ -70,7 +67,6 @@ def main():
     sp_containers.set_defaults(func=containers.do_operations)
     sp_monitor.set_defaults(func=monitor.do_monitor)
     sp_list.set_defaults(func=docker.list)
-    sp_cleanup.set_defaults(func=docker.cleanup)
 
     # Get configuration based on arguments
     args = parser.parse_args()
