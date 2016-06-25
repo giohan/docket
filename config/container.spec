@@ -15,7 +15,7 @@
        },
        "StopSignal": "SIGTERM",
        "HostConfig": {
-         "Binds": ["/tmp:/tmp","/var/log/container:/var/log/application"],
+         "Binds": ["/tmp:/tmp","/container-logs:/var/log/application"],
          "CpuPercent": 80,
          "CpuShares": 512,
          "CpuPeriod": 100000,

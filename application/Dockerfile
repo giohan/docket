@@ -14,4 +14,4 @@ COPY . /usr/src/app
 
 EXPOSE 8080
 # CMD [ "npm", "start" ]
-CMD ["/bin/sh", "-c", "npm start > /var/log/application/server-`hostname`.log 2>&1"]
+CMD ["/bin/sh", "-c", "npm start >> /var/log/application/server.log 2>&1"]
