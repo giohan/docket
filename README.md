@@ -7,7 +7,7 @@
 - Builds image based on application and Dockerfile placed under certain directory
 - Creates containers from this image
 - Helps you monitor container health
-- Logs from all containers are placed in the */var/log/containers* directory of the host machine
+- Logs from all containers are placed in the */container-logs* directory of the host machine
 
 ## Usage ##
 

@@ -1,0 +1,65 @@
+import argparse
+import lib.docker as docker
+import lib.monitoring as monitor
+import lib.containers as containers
+
+
+def main():
+
+    parser = argparse.ArgumentParser(prog='dockable')
+
+    # Global arguments
+    url_parse = argparse.ArgumentParser(add_help=False)
+    url_parse.add_argument('-u','--url',help='The url where the docker daemon is running. Format: "http://<ip>:<port>"',
+                        default='http:localhost:4243')
+
+    # Creating parsers for each of the subcommands (build|containers|monitor|list|cleanup)
+    sp = parser.add_subparsers()
+
+    sp_build = sp.add_parser('build', help='Builds image and creates containers',
+                             parents=[url_parse],
+                             description='Build a docker image from given app and create a number of containers')
+
+    sp_containers = sp.add_parser('containers', help='Container operations',
+                                  parents=[url_parse],
+                                  description='Helps you start|stop|rm containers by ID')
+    sp_containers.add_argument('--id',help='Id of the container you want to effect',
+                               required=True)
+    sp_containers.add_argument('command',choices=['start','stop','rm'],
+                               help='The action to do on the specified container. For "rm" the container needs to be stopped.')
+
+
+    sp_list = sp.add_parser('list',help='Returns a list of running containers',
+                            parents=[url_parse],
+                            description='Returns a list of running containers')
+    sp_list.add_argument('--all',action='store_true',default=False,
+                         help='List containers including not running')
+
+    sp_monitor = sp.add_parser('monitor',help='Monitor running containers',
+                               parents=[url_parse],
+                               description='Creates a table with basic metrics for each container')
+    sp_monitor.add_argument('--auto-update',action='store_true',default=False,
+                            help='Makes the metrics table auto-update in a "top"-like manner')
+
+    sp_cleanup = sp.add_parser('cleanup',help='Cleanup docker',
+                               parents=[url_parse],
+                               description='Removes images and containers from docker. To be used with caution beacause any changes are non-reversable')
+    # End of subparsers
+
+
+    # Deafult function calls for each subcommand
+    sp_build.set_defaults(func=docker.build)
+    sp_containers.set_defaults(func=containers.container_operations)
+    sp_monitor.set_defaults(func=monitor.do_monitor)
+    sp_list.set_defaults(func=docker.list)
+    sp_cleanup.set_defaults(func=docker.cleanup)
+
+    # Get configuration based on arguments
+    args = parser.parse_args()
+    conf = vars(args)
+
+    args.func(conf)
+
+
+if __name__ == '__main__':
+    main()
