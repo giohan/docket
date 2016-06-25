@@ -106,7 +106,7 @@ def get_containers(conf):
     url = conf['url']
     endpoint = '/containers/json'
 
-    if conf['all']:
+    if 'all' in conf and conf['all']:
         endpoint = endpoint + '?all=1'
     rest_point = url + endpoint
 
