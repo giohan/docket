@@ -1,7 +1,15 @@
 import argparse
+import importlib
 import lib.docker as docker
 import lib.monitoring as monitor
 import lib.containers as containers
+try:
+    importlib.import_module('termcolor')
+except ImportError:
+    import pip
+    pip.main(['install', 'termcolor'])
+finally:
+    globals()['termcolor'] = importlib.import_module('termcolor')
 
 
 def main():
@@ -68,7 +76,10 @@ def main():
     args = parser.parse_args()
     conf = vars(args)
 
-    args.func(conf)
+    try:
+        args.func(conf)
+    except KeyboardInterrupt:
+        print termcolor.colored('FAIL: Exited due to Keyboard Interrupt', 'red')
 
 
 if __name__ == '__main__':
