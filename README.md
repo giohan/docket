@@ -8,6 +8,7 @@
 - Creates containers from this image
 - Helps you monitor container health
 - Logs from all containers are placed in the */container-logs* directory of the host machine
+- Tested on: OSX 10.10, CentOS 7, Ubuntu 14.04 and 16.04
 
 ## Project Structure ##
 ~~~~
@@ -28,7 +29,6 @@
 
 - The *application/* directory is the default directory where the Dockerfile and all application files are placed.
 - *container.spec* is used by default to create containers.
-
 
 ## Get Started ##
 
