@@ -8,6 +8,7 @@
 - Creates containers from this image
 - Helps you monitor container health
 - Logs from all containers are placed in the */container-logs* directory of the host machine
+- Tested on: OSX 10.10, CentOS 7, Ubuntu 14.04 and 16.04
 
 ## Project Structure ##
 ~~~~
@@ -29,19 +30,26 @@
 - The *application/* directory is the default directory where the Dockerfile and all application files are placed.
 - *container.spec* is used by default to create containers.
 
-
 ## Get Started ##
 
 #### Prerequisites ####
 
-The only thing you need to have installed in order to start using dockable is *python* and *pip*. The script takes care of installing any other needed libraries
+The only thing you need to have installed in order to start using dockable is *python* and *pip*. The script takes care of installing any other needed libraries.
 
 To get started, you have to clone the repository to your computer.
 ~~~
-git clone https://hantzo@bitbucket.org/hantzo/dockable.git /your/target/dir
-export PATH=$PATH:/your/target/dir/dockable
+$ git clone https://hantzo@bitbucket.org/hantzo/dockable.git
+$ cd dockable
+$ export PATH=$PATH:`pwd`
+$ chmod +x dockable
 ~~~
-
+~~~
+$ dockable build --url http://<docker-host>:<port> -n <number of instances>
+~~~
+When running on ubuntu server 16.04, sometimes an import error appeared. This was due to pip locale settings. To get past this do:
+~~~
+$ export LC_ALL=C
+~~~
 ## Usage ##
 
 - Basic commands:
