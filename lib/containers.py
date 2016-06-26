@@ -25,7 +25,8 @@ def container_operations(url,action,id):
         r = requests.post(rest_point)
 
         status = 'started' if action=='start' else 'stopped'
-        print termcolor.colored('{} container {}'.format(status,id), 'cyan')
+        color = 'cyan' if action=='start' else 'yellow'
+        print termcolor.colored('{} container {}'.format(status,id), color)
 
 def get_info(url,id):
 
