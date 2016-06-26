@@ -34,7 +34,7 @@
 
 #### Prerequisites ####
 
-The only thing you need to have installed in order to start using dockable is *python* and *pip*. The script takes care of installing any other needed libraries
+The only thing you need to have installed in order to start using dockable is *python* and *pip*. The script takes care of installing any other needed libraries.
 
 To get started, you have to clone the repository to your computer.
 ~~~
@@ -46,7 +46,10 @@ $ chmod +x dockable
 ~~~
 $ dockable build --url http://<docker-host>:<port> -n <number of instances>
 ~~~
-
+When running on ubuntu server 16.04, sometimes an import error appeared. This was due to pip locale settings. To get past this do:
+~~~
+$ export LC_ALL=C
+~~~
 ## Usage ##
 
 - Basic commands:
