@@ -9,6 +9,9 @@ for package in packages:
     finally:
         globals()[package] = importlib.import_module(package)
 
+#####
+# Starts, stops or removes a container based on 'action' parameter
+#####
 def container_operations(url,action,id):
 
     if action == 'rm':
@@ -28,6 +31,10 @@ def container_operations(url,action,id):
         color = 'cyan' if action=='start' else 'yellow'
         print termcolor.colored('{} container {}'.format(status,id), color)
 
+
+#####
+# Gets configuration info and status of a given container
+#####
 def get_info(url,id):
 
     endpoint = '/containers/{}/json'.format(id)

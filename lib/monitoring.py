@@ -14,7 +14,9 @@ for package in packages:
         globals()[package] = importlib.import_module(package)
 
 
-
+#####
+# Calculates and prints a table of basic metrics per running container
+#####
 def metrics(conf):
 
     metric_data = []
@@ -24,6 +26,7 @@ def metrics(conf):
     for id in container_ids:
         stats = get_stats(conf['url'],id)
 
+        # Calculating metrics. This is done by the same function used in the official 'docker stats' command
         mem = convertSize(int(stats['memory_stats']['usage'])) + ' / ' + convertSize(int(stats['memory_stats']['limit']))
         net = convertSize(int(stats['networks']['eth0']['rx_bytes'])) + ' / ' + convertSize(int(stats['networks']['eth0']['tx_bytes']))
         cpu_delta = stats['cpu_stats']['cpu_usage']['total_usage'] - stats['precpu_stats']['cpu_usage']['total_usage']
@@ -34,7 +37,10 @@ def metrics(conf):
 
     t = texttable.Texttable()
     t.add_rows(metric_data)
+
+    # Clear screen to create the auto-update visualization
     if 'auto_update' in conf and conf['auto_update']: unused_variable = os.system("clear")
+
     print t.draw()
 
 
@@ -53,7 +59,9 @@ def do_monitor(conf):
     else:
         realtime(conf)
 
-
+#####
+# Get stats for a container. Disabled streaming stats.
+#####
 def get_stats(url,id):
 
     endpoint = '/containers/{}/stats?stream=false'.format(id)

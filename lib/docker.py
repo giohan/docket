@@ -14,7 +14,9 @@ for package in packages:
     finally:
         globals()[package] = importlib.import_module(package)
 
-
+#####
+# This is where the magic happens. Builds an image based on given parameters and calls create_containers
+#####
 def build(conf):
 
     # request endpoint and url
@@ -45,6 +47,9 @@ def build(conf):
     monitoring.metrics(conf)
 
 
+#####
+# Creates a number of containers based on user input
+#####
 def create_containers(conf):
 
     print termcolor.colored('Creating "{}" containers from image "{}"... '.format(conf['num_instances'],conf['image_name']), 'blue')
@@ -58,14 +63,14 @@ def create_containers(conf):
     with open(conf['container_spec']) as data_file:
         data = json.load(data_file)
 
+    # Override container.spec 'Image' attribute based on user input
     data['Image'] = conf['image_name']
 
     print termcolor.colored('Created {} containers!'.format(conf['num_instances']), 'green')
 
-    ids =[]
+    # This is the list to be printed post creation
     container_data = []
     container_data.append(["Name","Status","IP","Ports","Image"])
-
 
     for i in range(1, int(conf['num_instances'])+1):
 
@@ -81,6 +86,9 @@ def create_containers(conf):
     print t.draw()
 
 
+#####
+# Prints a list of containers and their configuration and status
+#####
 def list(conf):
 
     ids = get_containers(conf)
@@ -95,15 +103,9 @@ def list(conf):
     print t.draw()
 
 
-def cleanup(conf):
-    pass
-
-def cleanup_prompt():
-    pass
-
-def get_images(conf):
-    pass
-
+#####
+# Returns container names. Only running by default
+#####
 def get_containers(conf):
 
     url = conf['url']
