@@ -96,6 +96,8 @@ optional arguments:
                         JSON file containing parameters for creating the
                         containers. Must be carefull with "Binds" in order to
                         maintain centralized logging
+  --container-only      Use this if you want to create containers from
+                        existing image
 ~~~
 - Monitor:
 ~~~
@@ -116,7 +118,7 @@ usage: dockable containers [-h] [-u URL] --id ID {start,stop,rm}
 
 Helps you start|stop|rm containers by ID
 
-positional arguments:
+subcommands:
   {start,stop,rm}    The action to do on the specified container. For "rm" the
                      container needs to be stopped first.
 
