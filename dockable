@@ -62,6 +62,8 @@ def main():
     sp_build.add_argument('-c','--container-spec',default='config/container.spec',
                           help='JSON file containing parameters for creating the containers. \n Must be carefull with "Binds" in \
                           order to maintain centralized logging')
+    sp_build.add_argument('--container-only',action='store_true',
+                          default=False, help='Use this if you want to create containers from existing image')
 
     sp_containers = sp.add_parser('containers', help='Container operations',
                                   parents=[url_parse],

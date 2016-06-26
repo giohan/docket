@@ -1,5 +1,5 @@
 {
-       "Image": "node/webapp",
+       "Image": "dockable/app",
        "Labels": {
                "com.example.vendor": "giohan",
                "com.example.license": "GPL",

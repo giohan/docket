@@ -19,6 +19,15 @@ for package in packages:
 #####
 def build(conf):
 
+    #####
+    # If we want to create container from existing image, skip image creation.
+    #####
+    if conf['container_only']:
+        create_containers(conf)
+        print termcolor.colored('Fetching metrics... ', 'cyan')
+        monitoring.metrics(conf)
+        return
+
     # request endpoint and url
     url = conf['url']
     endpoint = '/build?t=' + conf['image_name']
