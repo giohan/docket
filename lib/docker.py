@@ -61,7 +61,7 @@ def build(conf):
 #####
 def create_containers(conf):
 
-    print termcolor.colored('Creating "{}" containers from image "{}"... '.format(conf['num_instances'],conf['image_name']), 'blue')
+    print termcolor.colored('Creating "{}" new containers from image "{}"... '.format(conf['num_instances'],conf['image_name']), 'blue')
 
     # request endpoint and url
     url = conf['url']
@@ -72,10 +72,12 @@ def create_containers(conf):
     with open(conf['container_spec']) as data_file:
         data = json.load(data_file)
 
-    # Override container.spec 'Image' attribute based on user input
-    data['Image'] = conf['image_name']
+    # If the 'Image' attribute is not provided in the container.spec, use the command line 'image_name' argument's value.
+    # If the user gives name via command line, then this overrides the one in container.spec
+    if (conf['image_name'] != 'dockable/app') or ('Image' not in data) or (data['Image'] == ''):
+        data['Image'] = conf['image_name']
 
-    print termcolor.colored('Created {} containers!'.format(conf['num_instances']), 'green')
+    print termcolor.colored('Created {} new containers!'.format(conf['num_instances']), 'green')
 
     # This is the list to be printed post creation
     container_data = []
