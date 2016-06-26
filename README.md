@@ -47,6 +47,10 @@ $ chmod +x dockable
 $ dockable build --url http://<docker-host>:<port> -n <number of instances>
 ~~~
 **Note:** If you want to build the image without creating containers, just run with ```-n 0```.
+If you do so, later you can create containers without building the image again:
+~~~
+dockable build --url http://<docker-host>:<port> -n 3 --container-only
+~~~
 
 When running on ubuntu server 16.04, sometimes an import error appeared. This was due to pip locale settings. To get past this do:
 ~~~
