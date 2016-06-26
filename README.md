@@ -38,7 +38,7 @@ The only thing you need to have installed in order to start using dockable is *p
 
 To get started, you have to clone the repository to your computer.
 ~~~
-$ git clone https://hantzo@bitbucket.org/hantzo/dockable.git .
+$ git clone https://hantzo@bitbucket.org/hantzo/dockable.git
 $ cd dockable
 $ export PATH=$PATH:`pwd`
 $ chmod +x dockable
