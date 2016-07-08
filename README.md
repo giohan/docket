@@ -1,6 +1,6 @@
-# Dockable #
+# Docket #
 
-**Dockable** is a command line utility that helps you build docker images, deploy containers and monitor running instances. It uses Docker's [Remote API](https://docs.docker.com/engine/reference/api/docker_remote_api/) in order to run it from any machine without having to install docker.
+**Docket** is a command line utility that helps you build docker images, deploy containers and monitor running instances. It uses Docker's [Remote API](https://docs.docker.com/engine/reference/api/docker_remote_api/) in order to run it from any machine without having to install docker.
 
 ## Features ##
 
@@ -18,7 +18,7 @@
 │   └── server.js  
 ├── config  
 │   └── container.spec  
-├── dockable  
+├── docket
 ├── lib  
 │   ├── containers.py  
 │   ├── docker.py  
@@ -34,22 +34,22 @@
 
 #### Prerequisites ####
 
-The only thing you need to have installed in order to start using dockable is *python* and *pip*. The script takes care of installing any other needed libraries.
+The only thing you need to have installed in order to start using docket is *python* and *pip*. The script takes care of installing any other needed libraries.
 
 To get started, you have to clone the repository to your computer.
 ~~~
-$ git clone https://hantzo@bitbucket.org/hantzo/dockable.git
-$ cd dockable
+$ git clone https://github.com/giohan/docket.git
+$ cd docket
 $ export PATH=$PATH:`pwd`
-$ chmod +x dockable
+$ chmod +x docket
 ~~~
 ~~~
-$ dockable build --url http://<docker-host>:<port> -n <number of instances>
+$ docket build --url http://<docker-host>:<port> -n <number of instances>
 ~~~
 **Note:** If you want to build the image without creating containers, just run with ```-n 0```.
 If you do so, later you can create containers without building the image again:
 ~~~
-dockable build --url http://<docker-host>:<port> -n 3 --container-only
+docket build --url http://<docker-host>:<port> -n 3 --container-only
 ~~~
 
 When running on ubuntu server 16.04, sometimes an import error appeared. This was due to pip locale settings. To get past this do:
@@ -60,7 +60,7 @@ $ export LC_ALL=C
 
 - Basic commands:
 ~~~
-usage: dockable {build,containers,list,monitor} [-h] ...
+usage: docket {build,containers,list,monitor} [-h] ...
 
 subcommands:
   {build,containers,list,monitor}
@@ -75,7 +75,7 @@ optional arguments:
 
 - Build:
 ~~~
-usage: dockable build [-h] [-u URL] [-n NUM_INSTANCES] [-i IMAGE_NAME]
+usage: docket build [-h] [-u URL] [-n NUM_INSTANCES] [-i IMAGE_NAME]
                       [-d DIRECTORY] [-c CONTAINER_SPEC]
 
 Build a docker image from given app and create a number of containers
@@ -101,7 +101,7 @@ optional arguments:
 ~~~
 - Monitor:
 ~~~
-usage: dockable monitor [-h] [-u URL] [--auto-update]
+usage: docket monitor [-h] [-u URL] [--auto-update]
 
 Creates a table with basic metrics for each container
 
@@ -114,7 +114,7 @@ optional arguments:
 ~~~
 - Container Operations:
 ~~~
-usage: dockable containers [-h] [-u URL] --id ID {start,stop,rm}
+usage: docket containers [-h] [-u URL] --id ID {start,stop,rm}
 
 Helps you start|stop|rm containers by ID
 
@@ -133,26 +133,26 @@ optional arguments:
 
 - Build an image called test/image and create 3 instances from this image.
 ~~~
-dockable build --url http://<ip>:<port> -i test/image -n 3
+docket build --url http://<ip>:<port> -i test/image -n 3
 ~~~
 - Get metrics of all running containers
 ~~~
-dockable monitor --url http://<ip>:<port>
+docket monitor --url http://<ip>:<port>
 ~~~
 
 - Stop and remove a running container
 ~~~
-dockable containers stop --id <container id or name> --url http://<ip>:<port>
-dockable containers rm --id <container id or name> --url http://<ip>:<port>
+docket containers stop --id <container id or name> --url http://<ip>:<port>
+docket containers rm --id <container id or name> --url http://<ip>:<port>
 ~~~
 - Get list of all containers, including not running
 ~~~
-dockable list --url http://<ip>:<port> --all
+docket list --url http://<ip>:<port> --all
 ~~~
 
 #### Sample output: ####
 ~~~
-$ dockable monitor --url http://139.162.195.16:4243 
+$ docket monitor --url http://139.162.195.16:4243
 +---------------------+---------+--------------------+-------------------+
 |        Name         |  CPU %  | Mem Usage / Limit  |     Net I / O     |
 +=====================+=========+====================+===================+
@@ -168,7 +168,7 @@ $ dockable monitor --url http://139.162.195.16:4243
 +---------------------+---------+--------------------+-------------------+
 ~~~
 ~~~
-$ dockable build --url http://139.162.195.16:4243 -i test/image
+$ docket build --url http://139.162.195.16:4243 -i test/image
 Building image "test/image" from directory "application/"... 
 	(This might take a while)
 Image built successfully!
@@ -183,7 +183,7 @@ started container d273f373aab8dd470cd82fb8304b153fe31dbd2aa01eac141dc57adb443cd4
 +---------------+---------+------------+-------------+------------+
 ~~~
 ~~~
-$ dockable list --url http://139.162.195.16:4243 --all
+$ docket list --url http://139.162.195.16:4243 --all
 +---------------------+---------+-------------+-------------+------------+
 |        Name         | Status  |     IP      |    Ports    |   Image    |
 +=====================+=========+=============+=============+============+

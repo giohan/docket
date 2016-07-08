@@ -3,20 +3,20 @@
 
 # (c) 2016, George Hantzaras <ghantzaras@gmail.com>
 #
-# This file is part of Dockable
+# This file is part of Docket
 #
-# Dockable is free software: you can redistribute it and/or modify
+# Docket is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation, either version 3 of the License, or
 # (at your option) any later version.
 #
-# Dockable is distributed in the hope that it will be useful,
+# Docket is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
 # You should have received a copy of the GNU General Public License
-# along with Dockable.  If not, see <http://www.gnu.org/licenses/>.
+# along with Docket.  If not, see <http://www.gnu.org/licenses/>.
 
 ########################################################
 
@@ -36,7 +36,7 @@ finally:
 
 def main():
 
-    parser = argparse.ArgumentParser(prog='dockable')
+    parser = argparse.ArgumentParser(prog='docket')
 
     ######
     # Global arguments
@@ -55,7 +55,7 @@ def main():
                              description='Build a docker image from given app and create a number of containers')
     sp_build.add_argument('-n','--num-instances', default=1,
                           help='Number of container instances to create after building the image')
-    sp_build.add_argument('-i','--image-name',default='dockable/app',
+    sp_build.add_argument('-i','--image-name',default='docket/app',
                           help='Name of the created image')
     sp_build.add_argument('-d','--directory',default='application/',
                           help='Directory of the application files. Path can be absolute or relative and must contain Dockerfile.')

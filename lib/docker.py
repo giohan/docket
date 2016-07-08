@@ -74,7 +74,7 @@ def create_containers(conf):
 
     # If the 'Image' attribute is not provided in the container.spec, use the command line 'image_name' argument's value.
     # If the user gives name via command line, then this overrides the one in container.spec
-    if (conf['image_name'] != 'dockable/app') or ('Image' not in data) or (data['Image'] == ''):
+    if (conf['image_name'] != 'docket/app') or ('Image' not in data) or (data['Image'] == ''):
         data['Image'] = conf['image_name']
 
     print termcolor.colored('Created {} new containers!'.format(conf['num_instances']), 'green')
